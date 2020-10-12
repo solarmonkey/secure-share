@@ -14,7 +14,7 @@ RUN apk add --update \
     python3-dev \
     build-base \
     gcc \
-    libev libev-dev \
+    libev libev-dev libffi-dev \
     linux-headers && \
     rm -rf /var/cache/apk/*
 
