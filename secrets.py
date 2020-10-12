@@ -2,10 +2,11 @@ import datetime
 import os
 
 import async_hvac
-import settings
 from aiohttp import web
 from marshmallow import Schema, fields, validate
 from webargs.aiohttpparser import use_args
+
+import settings
 
 CUBBYHOLE_PATH = os.path.join(settings.VAULT_SECRET_BASE, "secret")
 
@@ -32,7 +33,7 @@ async def new_cubbyhole(secret, master_client):
     in a cubbyhole.
     """
     token = await master_client.create_token(
-        policies=["single-secure-share"], lease="168h", meta={"name": secret["name"]}
+        policies=[settings.VAULT_POLICY], lease="168h", meta={"name": secret["name"]}
     )
     client = async_hvac.AsyncClient(
         settings.VAULT_ADDR, token=token["auth"]["client_token"]

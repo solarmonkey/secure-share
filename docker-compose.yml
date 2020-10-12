@@ -12,6 +12,7 @@ services:
     environment:
       VAULT_TOKEN: 60eb71f5-f3fd-7435-ff78-49b7dfae9039
       VAULT_ADDR: http://vault:8200
+    command: adev runserver app.py
 
   vault:
     image: vault
